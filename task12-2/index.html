@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>高级前段面试题</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/myjs.js"></script>
+</head>
+
+<body>
+    <!--承载层-->
+    <div id="wrapper">
+        <h2>高级前端面试题</h2>
+        <nav>
+            <a href="#">理论知识</a>
+            <a href="#2">HTML</a>
+            <a href="#3">CSS</a>
+            <a href="#4">Javascript</a>
+        </nav>
+        <!-- 内容 -->
+        <div id="content">
+            <h3>一、理论知识</h3>
+            <!--有序列表-->
+            <ol>
+                <li>
+                    <h4>从输入完网址按下回车，到看到网页这个过程中发生了什么？</h4>
+                    <p>
+                        域名解析——发起TCP的三次握手——建立TCP连接后发起HTTP请求——服务器端响应HTTP请求，浏览器得到html代码———浏览器解析html代码，并请求html代码中的资源——浏览器对页面进行渲染呈现给用户
+                        <br/><strong>参考：</strong> <a href="http://www.linux178.com/web/httprequest.html" target="_blank">《一次完整的HTTP事务是怎样一个过程》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>谈谈你对前段性能优化的理解</h4>
+                    <p>
+                        1.请求数量：合并脚本和样式表，CSS Sprites,拆分初始化负载，划分主域
+                        <br/> 2.请求带宽：开启GZip,精简Javasript，移除重复脚本，图像优化，讲icon做成字体
+                        <br/> 3.缓存利用：使用CDN，使用外部Javascript和CSS，添加Expires头，减少DNS查找，配置Etag,使用Ajax可缓存
+                        <br/>4.页面结构：将样式表放在顶部，将脚本放在底部，尽早刷新文档的输出
+                        <br/>5.代码校验：避免CSS表达式，避免重定向
+                        <br/><strong>参考：</strong> <a href="http://div.io/topic/371" target="_blank">《前端工程与性能优化》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>前端MV*框架的意义</h4>
+                    <p>
+                        早期前端都是比较简单，基本以页面为工作单元，内容以浏览型为主，也偶尔有简单的表单操作，基本不太需要框架。
+                        <br/> 随着 AJAX 的出现，Web2.0的兴起，人们可以在页面上可以做比较复杂的事情了，然后前端框架才真正出现了。
+                        <br/>如果是页面型产品，多数确实不太需要它，因为页面中的 JavaScript代码，处理交互的绝对远远超过处理模型的，但是如果是应用软件类产品，这就太需要了。
+                        <br/>长期做某个行业软件的公司，一般都会沉淀下来一些业务组件，主要体现在数据模型、业务规则和业务流程，这些组件基本都存在于后端，在前端很少有相应的组织。
+                        <br/>从协作关系上讲，很多前端开发团队每个成员的职责不是很清晰，有了前端的 MV框架，这个状况会大有改观。
+                        <br/>之所以感受不到 MV*框架的重要性，是因为Model部分代码较少，View的相对多一些。如果主要在操作View和Controller，那当然 jQuery 这类库比较好用了
+                        <br/><strong>参考：</strong> <a href="http://segmentfault.com/a/1190000002794454" target="_blank">《前端 MV*框架的意义》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>请简述盒模型</h4>
+                    <p>
+                        IE6盒子模型与W3C盒子模型。
+                        <br/> 文档中的每个元素被描绘为矩形盒子。盒子有四个边界：外边距边界margin, 边框边界border, 内边距边界padding与内容边界content。
+                        <br/> CSS3中有个box-sizing属性可以控制盒子的计算方式，
+                        <br/>content-box：padding和border不被包含在定义的width和height之内。对象的实际宽度等于设置的width值和border、padding之和。（W3C盒子模型）
+                        <br/>border-box：padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值。（IE6盒子模型）
+                        <br/><strong>参考：</strong> <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/box_model" target="_blank">《盒模型》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>请你谈谈Cookie的弊端</h4>
+                    <p>
+                        1.每个特定的域名下最多生成的cookie个数有限制
+                        <br/>2.IE和Opera会清理近期最少使用的cookie,Firefox会随机清理cookie
+                        <br/>3.cookie的最大大约为4096字节，为了兼容性，一把不能超过4095字节
+                        <br/>4.安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息
+                    </p>
+                </li>
+                <li>
+                    <h4>浏览器本地储存</h4>
+                    <p>
+                        在HTML5中提供了sessionStorage和localStorage。
+                        <br/>sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁，是会话级别的存储。
+                        <br/>localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。
+                    </p>
+                </li>
+                <li>
+                    <h4>web storage和cookie的区别</h4>
+                    <p>
+                        1.Cookie的大小是受限的
+                        <br/>2.每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽
+                        <br/>3.cookie还需要指定作用域，不可以跨域调用
+                        <br/>4.Web Storage拥有setItem,getItem等方法，cookie需要前端开发者自己封装setCookie，getCookie
+                        <br/>5.Cookie的作用是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生
+                        <br/>6.IE7、IE6中的UserData通过简单的代码封装可以统一到所有的浏览器都支持web storage
+                    </p>
+                </li>
+                <li>
+                    <h4>对BFC规范的理解</h4>
+                    <p>
+                        BFC全称是Block Formatting Context，即块格式化上下文。它是CSS2.1规范定义的，关于CSS渲染定位的一个概念。
+                        <br/>BFC是页面CSS 视觉渲染的一部分，用于决定块盒子的布局及浮动相互影响范围的一个区域。
+                        <br/>BFC的一个最重要的效果是，让处于BFC内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。
+                        <br/>利用BFC可以闭合浮动，防止与浮动元素重叠。getItem等方法，cookie需要前端开发者自己封装setCookie，getCookie
+                        <br/><strong>参考：</strong> <a href="http://elcarim5efil.github.io/blog/2015/08/20/Learning_BFC.html" target="_blank">《Learning BFC》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>线程与进程的区别</h4>
+                    <p>
+                        1. 一个程序至少有一个进程，一个进程至少有一个线程
+                        <br/>2.线程的划分尺度小于进程，使得多线程程序的并发性高
+                        <br/>3.进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率
+                        <br/>4.每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制
+                        <br/>5.多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配
+                    </p>
+                </li>
+                <li>
+                    <h4>请说出三种减少页面加载时间的方法</h4>
+                    <p>
+                        1. 尽量减少页面中重复的HTTP请求数量
+                        <br/>2.服务器开启gzip压缩
+                        <br/>3.css样式的定义放置在文件头部
+                        <br/>4.Javascript脚本放在文件末尾
+                        <br/>5.压缩合并Javascript、CSS代码
+                        <br/>6.使用多域名负载网页内的多个文件、图片
+                        <br/><strong>参考：</strong> <a href="http://eadonlearning.blog.51cto.com/6642994/1334446" target="_blank">《减低页面加载时间的方法》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>常使用的库有哪些？常用的前端开发工具？开发过什么应用或组件？</h4>
+                    <p>
+                        使用率较高的框架有jQuery、YUI、Prototype、Dojo、Ext.js、Mootools等。尤其是jQuery，超过91%
+                        <br/>轻量级框架有Modernizr、underscore.js、backbone.js、Raphael.js等。 （理解这些框架的功能、性能、设计原理）
+                        <br/>Sublime Text 、webstorm、Notepad++、Firebug、HttpWatch、Yslow。
+                        <br/>城市选择插件，汽车型号选择插件、幻灯片插件。弹出层
+                    </p>
+                </li>
+                <li>
+                    <h4>列举IE与其他浏览器不一样的特性？</h4>
+                    <p>
+                        IE的排版引擎是Trident （又称为MSHTML）
+                        <br/>Trident内核曾经几乎与W3C标准脱节（2005年）
+                        <br/>Trident内核的大量 Bug等安全性问题没有得到及时解决
+                        <br/>JS方面，有很多独立的方法，例如绑定事件的attachEvent、创建事件的createEventObject等
+                        <br/>CSS方面，也有自己独有的处理方式，例如设置透明，低版本IE中使用滤镜的方式
+                    </p>
+                </li>
+                <li>
+                    <h4>什么叫优雅降级和渐进增强？</h4>
+                    <p>
+                        渐进增强 progressive enhancement：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
+                        <br/>优雅降级 graceful degradation：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。
+                        <br/>区别：优雅降级是从复杂的现状开始，并试图减少用户体验的供给，而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带。
+                        <br/><strong>参考：</strong> <a href="http://www.cnblogs.com/mofish/p/3822879.html" target="_blank">《优雅降级和渐进增强的区别》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>对前端界面工程师这个职位是怎么样理解的？</h4>
+                    <p>
+                        前端是最贴近用户的程序员，前端的能力就是能让产品从 90分进化到 100 分，甚至更好
+                        <br/>参与项目，快速高质量完成实现效果图，精确到1px；
+                        <br/>与团队成员，UI设计，产品经理的沟通；
+                        <br/>做好的页面结构，页面重构和用户体验；
+                        <br/>处理hack，兼容、写出优美的代码格式；
+                        <br/>针对服务器的优化、拥抱最新前端技术。
+                    </p>
+                </li>
+                <li>
+                    <h4>平时如何管理你的项目？</h4>
+                    <p>
+                        必须确定好全局样式（globe.css），编码模式(utf-8) 等；
+                        <br/>编写习惯必须一致（例如都是采用继承式的写法，单样式都写成一行）；
+                        <br/>标注样式编写人，各模块都及时标注（标注关键样式调用的地方）；
+                        <br/>页面进行标注（例如 页面 模块 开始和结束）；
+                        <br/>CSS跟HTML 分文件夹并行存放，命名都得统一（例如style.css）；
+                        <br/>JS 分文件夹存放 命名以该JS功能为准的英文翻译。
+                        <br/>图片采用整合的 images.png png8 格式文件使用 尽量整合在一起使用方便将来的管理
+                    </p>
+                </li>
+                <li>
+                    <h4>网站重构的理解</h4>
+                    <p>
+                        重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为。
+                        <br/>使网站前端兼容于现代浏览器(针对于不合规范的CSS、如对IE6有效的)
+                        <br/>对于移动平台的优化，针对于SEO进行优化
+                        <br/>减少代码间的耦合，让代码保持弹性
+                        <br/>压缩或合并JS、CSS、image等前端资源
+                    </p>
+                </li>
+                <li>
+                    <h4>知道的网页制作会用到的图片格式有哪些？</h4>
+                    <p>
+                        png-8，png-24，jpeg，gif，svg
+                        <br/>Webp：谷歌（google）开发的一种旨在加快图片加载速度的图片格式。图片压缩体积大约只有JPEG的2/3，并能节省大量的服务器带宽资源和数据空间。Facebook Ebay等知名网站已经开始测试并使用WebP格式。
+                        <br/>Apng：全称是“Animated Portable Network Graphics”, 是PNG的位图动画扩展，可以实现png格式的动态图片效果。04年诞生，但一直得不到各大浏览器厂商的支持，直到日前得到 iOS safari 8的支持，有望代替GIF成为下一代动态图标准。
+                    </p>
+                </li>
+                <li>
+                    <h4>一次js请求一般情况下有哪些地方会有缓存处理？</h4>
+                    <p>
+                        浏览器端存储
+                        <br/>浏览器端文件缓存
+                        <br/>HTTP缓存304
+                        <br/>服务器端文件类型缓存
+                        <br/>表现层及DOM缓存
+                        <br/><strong>参考：</strong> <a href="http://www.nowamagic.net/librarys/veda/detail/162" target="_blank">《一次HTTP请求中有哪些地方可以缓存》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>一个页面上有大量的图片（大型电商网站），加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验。</h4>
+                    <p>
+                        1.图片懒加载，滚动到相应位置才加载图片。
+                        <br/>2.图片预加载，如果为幻灯片、相册等，将当前展示图片的前一张和后一张优先下载。
+                        <br/>3.使用CSSsprite，SVGsprite，Iconfont、Base64等技术，如果图片为css图片的话。
+                        <br/>4.如果图片过大，可以使用特殊编码的图片，加载时会先加载一张压缩的特别厉害的缩略图，以提高用户体验。
+                    </p>
+                </li>
+                <li>
+                    <h4>谈谈以前端角度出发做好SEO需要考虑什么？</h4>
+                    <p>
+                        1.了解搜索引擎如何抓取网页和如何索引网页
+                        <br/>2.meta标签优化
+                        <br/>3.关键词分析
+                        <br/>4.付费给搜索引擎。
+                        <br/>5.链接交换和链接广泛度（Link Popularity）
+                        <br/>6.合理的标签使用
+                    </p>
+                </li>
+                <p id="2"></p>
+            </ol>
+            <h3>二、HTML</h3>
+            <ol>
+                <li>
+                    <h4>对WEB标准以及W3C的理解和认识</h4>
+                    <p>
+                        标签闭合、标签小写、不乱嵌套、提高搜索机器人搜索几率、使用外链css和js脚本、结构性为表现分离、文件下载与页面速度更快、内容能被更多的用户所访问、内容能被更广泛的设备所访问、更少的代码和组件，容易维护、改版方便，不需要变动页面内容、提供打印版本而不需要复制内容、提高网站易用性；
+                    </p>
+                </li>
+                <li>
+                    <h4>xhtml和html有什么区别</h4>
+                    <p>
+                        HTML是一种基本的WEB的网页设计语言，XHTML是一个基于XML的置标语言
+                        <br/> 最主要的不同：
+                        <br/> XHTML元素必须被正确的嵌套。
+                        <br/> XHTML元素必须被关闭。
+                        <br/> 标签名必须用小写字母。
+                        <br/> XHTML文档必须拥有根元素。
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>你做的页面在哪些浏览器测试过？这些浏览器的内核分别是什么？</h4>
+                    <p>
+                        IE: trident内核
+                        <br/> Firefox: gecko内核
+                        <br/> Safari: webkit内核
+                        <br/> Opera: 以前是presto内核，现在已改用Google Chrome的Blink内核
+                        <br/> Chrome:Blink(基于webkit,Google与Opera Software共同开发)
+                    </p>
+                </li>
+                <li>
+                    <h4>每个HTML文件里开头都有个很重要的东西，Doctype,知道这是干什么的吗？</h4>
+                    <p>
+                        &lt;!DOCTYPE&gt; 声明位于文档中的最前面位置，处于&lt;html&gt;标签之前， 此标签可告知浏览器文档使用哪种HTML或XHTML规范。（重点：告知浏览器按照何种规范解析页面）
+                    </p>
+                </li>
+                <li>
+                    <h4>行内元素有哪些？块级元素有哪些？css的盒模型？</h4>
+                    <p>
+                        块级元素：div h1~h6 form ul ol hr p table pre form
+                        <br/> 行内元素：a br i em span input strong select
+                        <br/> css盒模型：content,border,margin,padding
+                    </p>
+                </li>
+                <li>
+                    <h4>css引入的方式有哪些？link和@impot的区别是？</h4>
+                    <p>
+                        内联、内部、外链
+                        <br/> 区别：前者是同时加载，后者是页面全部下载完后在被加载
+                        <br/> Link 支持使用javascript改变样式，后者不可
+                    </p>
+                </li>
+                <li>
+                    <h4>简述一下src与href的区别</h4>
+                    <p>
+                        src用于替换当前元素，href用于在当前文档和引用资源之间确立联系。
+                        <br/> src是source的缩写，指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置； 在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。
+                        <br/> 当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架资源也如此， 类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部。
+                        <br/>href 是Hypertent Reference的缩写，指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接， 浏览器会并行加载资源并且不会停止对当前文档的处理。这也是为什么建议使用link方式来加载css,而不是使用@import方式。
+                    </p>
+                </li>
+                <li>
+                    <h4>请写出至少5个html5新增的标签，并说明其语义和应用场景</h4>
+                    <p>
+                        section：定义文档中的一个章节
+                        <br/> nav：定义只包含导航链接的章节
+                        <br/> header：定义页面或章节的头部。它经常包含 logo、页面标题和导航性的目录。
+                        <br/> footer：定义页面或章节的尾部。它经常包含版权信息、法律信息链接和反馈建议用的地址。
+                        <br/> aside：定义和页面内容关联度较低的内容——如果被删除，剩下的内容仍然很合理。
+                    </p>
+                </li>
+                <li>
+                    <h4>请说说你对标签语义化的理解？</h4>
+                    <p>
+                        1.去掉或者丢失样式的时候能够让页面呈现出清晰的结构
+                        <br/> 2.有利于SEO：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重；
+                        <br/> 3.方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；
+                        <br/> 4.便于团队开发和维护，语义化更具可读性，遵循W3C标准的团队都遵循这个标准，可以减少差异化。
+                    </p>
+                </li>
+                <li>
+                    <h4>html5有哪些新特性、移除了那些元素？</h4>
+                    <p>
+                        1.HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+                        <br/> 2.拖拽释放(Drag and drop) API
+                        <br/> 3.语义化更好的内容标签（header,nav,footer,aside,article,section）
+                        <br/> 4.音频、视频API(audio,video)
+                        <br/> 5.画布(Canvas) API
+                        <br/> 6.地理(Geolocation) API
+                        <br/> 7.本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失
+                        <br/> 8.sessionStorage 的数据在页面会话结束时会被清除
+                        <br/> 9.表单控件，calendar、date、time、email、url、search
+                        <br/> 10.新的技术webworker, websocket等
+                    </p>
+                </li>
+                <p id="3"></p>
+            </ol>
+            <h3>三、CSS</h3>
+            <ol>
+                <li>
+                    <h4>请列举几种可以清除浮动的方法（至少两种）</h4>
+                    <p>
+                        1.添加额外标签，例如&lt;div style="clear:both"&gt;&lt;/div&gt;
+                        <br/> 2.使用br标签和其自身的html属性，例如&lt;br clear="all" /&gt;
+                        <br/> 3.父元素设置 overflow：hidden；在IE6中还需要触发hasLayout，例如zoom：1；
+                        <br/> 4. 父元素设置 overflow：auto 属性；同样IE6需要触发hasLayout
+                        <br/> 5.父元素也设置浮动
+                        <br/> 6.父元素设置display:table
+                        <br/> 7.使用:after 伪元素；由于IE6-7不支持:after，使用 zoom:1触发 hasLayout。
+                        <br/><strong>参考：</strong> <a href="http://www.5icool.org/a/201211/a1661.html" target="_blank">《8种CSS清除浮动的方法优缺点分析》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>请列举几种隐藏元素的方法</h4>
+                    <p>
+                        1.visibility: hidden；这个属性只是简单的隐藏某个元素，但是元素占用的空间任然存在。
+                        <br/> 2.opacity: 0；一个CSS3属性，设置0可以使一个元素完全透明，制作出和visibility一样的效果。与visibility相比，它可以transition和animate
+                        <br/> 3.position: absolute；使元素脱离文档流，处于普通文档之上，给它设置一个很大的left负值定位，使元素定位在可见区域之外。
+                        <br/> 4. display: none；元素会变得不可见，并且不会再占用文档的空间。
+                        <br/> 5.transform: scale(0)；将一个元素设置为无限小，这个元素将不可见。这个元素原来所在的位置将被保留。
+                        <br/> 6.height: 0; overflow: hidden；将元素在垂直方向上收缩为0,使元素消失。只要元素没有可见的边框，该技术就可以正常工作。
+                        <br/> 7.filter: blur(0)；将一个元素的模糊度设置为0，从而使这个元素“消失”在页面中。
+                        <br/><strong>参考：</strong> <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201502271431.html" target="_blank">《使用CSS隐藏HTML元素的4种常用方法》</a>
+                        <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201502281436.html" target="_blank">《通过HTML和CSS隐藏和显示元素的4种方法》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>如何让一段文本中的所有英文单词的首字母大写</h4>
+                    <p>
+                        text-transform：
+                        <br/> none| capitalize(将每个单词的第一个字母转换成大写) | uppercase(将每个单词转换成大写 ) | lowercase(将每个单词转换成小写 )
+                    </p>
+                </li>
+                <li>
+                    <h4>请简述CSS样式表继承</h4>
+                    <p>
+                        CSS样式表继承指的是，特定的CSS属性向下传递到子孙元素。会被继承下去的属性如下：
+                        <br/> 文本相关：font-family，font-size， font-style，font-variant，font-weight， font，letter-spacing，line-height，color
+                        <br/> 列表相关：list-style-image，list-style-position，list-style-type， list-style
+                        <br/><strong>参考：</strong> <a href="http://www.cnphp.info/css-style-inheritance.html" target="_blank">《CSS样式表继承详解》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>请简述CSS的权重规则</h4>
+                    <p>
+                        一个行内样式+1000，一个id+100，一个属性选择器/class类/伪类选择器+10，一个元素名/伪对象选择器+1。 关系选择器将拆分为两个选择器再计算
+                        <br/><strong>参考：</strong> <a href="http://www.w3cplus.com/css/css-specificity-things-you-should-know.html" target="_blank">《CSS权重》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>请写出多种等高布局</h4>
+                    <p>
+                        1.假等高列：使用背景图片，在列的父元素上使用这个背景图进行Y轴的铺放，从而实现一种等高列的假像
+                        <br/> 2.给容器div使用单独的背景色（固定布局）（流体布局）：用元素中的最大高度撑大其他的容器高度
+                        <br/> 3.使用正padding和负margin对冲实现多列布局方法：在所有列中使用正的上、下padding和负的上、下margin，并在所有列外面加上一个容器，设置overflow:hiden把溢出背景切掉
+                        <br/> 4.使用边框和定位模拟列等高：但不能使用在多列
+                        <br/><strong>参考：</strong> <a href="http://www.w3cplus.com/css/creaet-equal-height-columns" target="_blank">《八种创建等高列布局》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4>在CSS样式中常使用px、em，各有什么优劣，在表现上有什么区别？</h4>
+                    <p>
+                        px是相对长度单位，相对于显示器屏幕分辨率而言的。
+                        <br/> em是相对长度单位，相对于当前对象内文本的字体尺寸
+                        <br/>px定义的字体，无法用浏览器字体放大功能。
+                        <br/>em的值并不是固定的，会继承父级元素的字体大小，1 ÷ 父元素的font-size × 需要转换的像素值 = em值。
+                    </p>
+                </li>
+                <li>
+                    <h4>css选择器有哪些，优先级</h4>
+                    <p>
+                        派生选择器、id选择器、类选择器、属性选择器、后代选择器、群组选择器
+                        <br/> 选择器指向越准确 ，优先级越高
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>img标签上title与alt属性的区别是什么？</h4>
+                    <p>
+                        alt 当图片不显示时用文字代表
+                        <br/> title 为该属性提供信息
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>描述css reset的作用和用途。</h4>
+                    <p>
+                        reset重置浏览器的css默认属性，浏览器的品种不同，样式不同，然后重置，让他们统一
+                        <br/>当然，初始化样式会对SEO有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。
+                    </p>
+                </li>
+                <li>
+                    <h4>解释css sprites,如何使用。</h4>
+                    <p>
+                        css雪碧图，把一对小的图片整合到一张大的图片上，减轻服务器对图片的请求数量
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>知道的网页制作会用到的图片格式有哪些？</h4>
+                    <p>
+                        png-8,png-24,jpeg,gif,svg
+                        <br/> Webp格式，谷歌开发的一种旨在加快图片加载速度的图片格式。图片压缩体积只有JPEG的2/3，并能节省大量的服务器宽带资源和数据空间。
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>浏览器标准盒模型和怪异盒模型的区别？</h4>
+                    <p>
+                        标准盒模型 总宽度=width+padding+border+margin
+                        <br/> 怪异盒模型 总宽度=内容区width+padding+border+margin
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>什么是外边距重叠？重叠的结果是什么？</h4>
+                    <p>
+                        1.两个相邻的外边距都是正数时，折叠结果是它们两者之间较大的值。
+                        <br/> 2.两个相邻的外边距都是负数时，折叠结果是两者绝对值较大的值。
+                        <br/> 3.两个相邻的外边距一正一负时，折叠结果是两者相加的和。
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>css hack</h4>
+                    <p>
+                        &lt;!--[if IE 6]--&gt;&lt;!--[end if]--&gt;
+                        <br/> _margin \\IE6
+                        <br/> +margin \\IE7
+                        <br/> margin:0 auto\9 所有IE
+                        <br/> margin:0 auto IE8
+                        <br/>
+                    </p>
+                </li>
+                <li>
+                    <h4>写出几种IE6 BUG 的解决方法</h4>
+                    <p>
+                        1.双边距BUG float引起的，使用display
+                        <br/> 2.3像素问题，使用float引起的 使用display:inline -3px
+                        <br/> 3.超链接hover 点击失效 使用正确的书写顺序 link visited hover active
+                        <br/> 4.IE z-index问题 给父级添加position：relative
+                        <br/> 5.png 透明 使用js代码改
+                        <br/> 6.min-height最小高度 !Important解决
+                        <br/> 7.为什么没有办法定义1px左右的宽度容器（IE6默认的行高造成的，使用over:hidden,zoom:0.08 line-height:1px）
+                        <br/>
+                    </p>
+                </li>
+                <p id="4"></p>
+            </ol>
+            <h3>四、Javascript</h3>
+            <ol>
+                <li>
+                    <h4>请解释一下什么是闭包</h4>
+                    <p>
+                        闭包是一种特殊的对象。它由两部分构成：函数，以及创建该函数的环境。
+                        <br/> 可以把闭包简单理解成 "定义在一个函数内部的函数"，闭包就是将函数内部和函数外部连接起来的一座桥梁。闭包有如下特性：
+                        <br/>1.JavaScript允许你使用在当前函数以外定义的变量
+                        <br/>2.即使外部函数已经返回，当前函数仍然可以引用在外部函数所定义的变量
+                        <br/>3.闭包可以更新外部变量的值
+                        <br/>4.用闭包模拟私有方法
+                        <br/>由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题
+                    </p>
+                </li>
+                <li>
+                    <h4>call 和 apply 的区别是什么？</h4>
+                    <p>
+                        call 和 apply 就是为了改变函数体内部 this 的指向。
+                        <br/>区别是从第二个参数起，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。起来的一座桥梁。闭包有如下特性：
+                        <br/>当参数明确时用call与apply都行, 当参数不明确时可用apply给合arguments
+                    </p>
+                </li>
+                <li>
+                    <h4> jQuery中 $(′.class′)和$('div.class') 哪个效率更高？</h4>
+                    <p>
+                        jQuery内部使用Sizzle引擎，处理各种选择器。Sizzle引擎的选择顺序是从右到左，所以这条语句是先选.class，
+                        <br/>第二个会直接过滤出div标签，而第一个就不会过滤了，将所有相关标签都列出。
+                        <br/><strong>参考：</strong> <a href="http://www.ruanyifeng.com/blog/2011/08/jquery_best_practices.html" target="_blank">《jQuery最佳实践》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> 获得一个DOM元素的绝对位置</h4>
+                    <p>
+                        offsetTop：返回当前元素相对于其 offsetParent 元素的顶部的距离
+                        <br/>offsetLeft：返回当前元素相对于其 offsetParent 元素的左边的距离
+                        <br/>getBoundingClientRect()：返回值是一个DOMRect对象，它包含了一组用于描述边框的只读属性——left、top、right和bottom，属性单位为像素
+                        <br/><strong>参考：</strong> <a href="http://www.cnblogs.com/strick/p/4826273.html" target="_blank">《JavaScript中尺寸、坐标》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> Ajax读取一个XML文档并进行解析的实例</h4>
+                    <p>
+                        1.初始化一个HTTP请求，IE以ActiveX对象引入。 后来标准浏览器提供了XMLHttpRequest类，它支持ActiveX对象所提供的方法和属性
+                        <br/>2.发送请求，可以调用HTTP请求类的open()和send()方法
+                        <br/>3.处理服务器的响应，通过http_request.onreadystatechange = nameOfTheFunction。来指定函数
+                        <br/><strong>参考：</strong> <a href="https://developer.mozilla.org/zh-CN/docs/AJAX/Getting_Started" target="_blank">《开始AJAX》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> JS如何实现面向对象和继承机制？</h4>
+                    <p>
+                        1.利用json创建对象
+                        <br/>2.使用JavaScript中的Object类型
+                        <br/>3.通过创建函数来生成对象
+                        <br/>继承机制：
+                        <br/>1.构造函数绑定，使用call或apply方法，将父对象的构造函数绑定在子对象上
+                        <br/>2.prototype模式，继承new函数的模式
+                        <br/>3.直接继承函数的prototype属性，对b的一种改进
+                        <br/>4.利用空对象作为中介
+                        <br/>5.在ECMAScript5中定义了一个新方法Object.create()，用于创建一个新方法
+                        <br/>6.拷贝继承，把父对象的所有属性和方法，拷贝进子对象，实现继承。参考《JavaScript中的对象克隆》
+                        <br/><strong>参考：</strong> <a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank">《构造函数的继承》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> JS模块的封装方法，比如怎样实现私有变量，不能直接赋值，只能通过公有方法</h4>
+                    <p>
+                        1.通过json生成对象的原始模式，多写几个就会非常麻烦，也不能反映出它们是同一个原型对象的实例
+                        <br/>2.原始模式的改进，可以写一个函数，解决代码重复的问题。同样不能反映出它们是同一个原型对象的实例
+                        <br/>3.构造函数模式，就是一个普通函数，不过内部使用了this变量，但是存在一个浪费内存的问题。象
+                        <br/>4. Prototype模式，每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承，可以把那些不变的属性和方法，直接定义在prototype对象上。Prototype模式的验证方法：isPrototypeOf()、hasOwnProperty()和in运算符。
+                        <br/><strong>参考：</strong> <a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html" target="_blank">《封装》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> 对this指针的理解，可以列举几种使用情况？</h4>
+                    <p>
+                        this指的是：调用函数的那个对象。
+                        <br/>1.纯粹的函数调用，属于全局性调用，因此this就代表全局对象Global。
+                        <br/>2.作为对象方法的调用，这时this就指这个上级对象。
+                        <br/>3.作为构造函数调用，就是通过这个函数new一个新对象（object）。这时，this就指这个新对象。
+                        <br/>4.apply与call的调用，它们的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。
+                        <br/><strong>参考：</strong> <a href="http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html" target="_blank">《Javascript的this用法》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> 在JavaScript中，常用的绑定事件的方法有哪些？</h4>
+                    <p>
+                        this指的是：调用函数的那个对象。
+                        <br/>1.在DOM元素中直接绑定，DOM元素，可以理解为HTML标签，onXXX="JavaScript Code"，查看事件列表。
+                        <br/>2.在JavaScript代码中绑定，elementObject.onXXX=function(){}，通称为DOM0事件系统。
+                        <br/>3.绑定事件监听函数，标准浏览器使用 addEventListener() ，IE11以下版本attachEvent() 来绑定事件监听函数，通称为DOM2事件系统。
+                        <br/><strong>参考：</strong> <a href="http://www.itxueyuan.org/view/6338.html" target="_blank">《JavaScript绑定事件的方法》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> 解释下javascript的冒泡和捕获</h4>
+                    <p>
+                        <strong>参考：</strong> <a href="http://www.cnblogs.com/hh54188/archive/2012/02/08/2343357.html" target="_blank">《javascript的冒泡和捕获》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> jQuery的特点</h4>
+                    <p>
+                        1.一款轻量级的js库
+                        <br/>2.丰富快速的DOM选择器
+                        <br/>3.链式表达式
+                        <br/>4.事件、样式、动画等特效支持来绑定事件监听函数，通称为DOM2事件系统。
+                        <br/>5.Ajax操作封装，支持跨域
+                        <br/>6.跨浏览器兼容
+                        <br/>7.插件扩展开发
+                        <br/><strong>参考：</strong> <a href="http://www.cnblogs.com/sanmaospace/archive/2013/06/15/3137905.html" target="_blank">《JQuery特点、优缺点及其常用操作》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> Ajax有哪些好处和弊端</h4>
+                    <p>
+                        <strong>参考：</strong> <a href="http://www.cnblogs.com/sanmaospace/archive/2013/06/15/3137180.html" target="_blank">《AJAX工作原理及其优缺点》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> null和undefined的区别？</h4>
+                    <p>
+                        null：
+                        <br/>1.null是一个表示"无"的对象，转为数值时为0
+                        <br/>2.null表示"没有对象"，即该处不应该有值。
+                        <br/>undefined：
+                        <br/>1.undefined是一个表示"无"的原始值，转为数值时为NaN。
+                        <br/>2.undefined表示"缺少值"，就是此处应该有一个值，但是还没有定义。
+                        <br/><strong>参考：</strong> <a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank">《undefined与null的区别》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> new操作符具体干了什么呢?</h4>
+                    <p>
+                        <br/>1.一个新对象被创建。它继承自函数原型
+                        <br/>2.构造函数被执行。执行的时候，相应的传参会被传入
+                        <br/>3.上下文(this)会被指定为这个新实例
+                        <br/>4.如果构造函数返回了一个“对象”，那么这个对象会取代整个new出来的结果。
+                        <br/><strong>参考：</strong> <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new" target="_blank">《new运算符》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> js延迟加载的方式有哪些？</h4>
+                    <p>
+                        <br/>1.将script节点放置在最后之前
+                        <br/>2.使用script标签的defer和async属性，defer属性为延迟加载，是在页面渲染完成之后再进行加载的，而async属性则是和文档并行加载
+                        <br/>3.通过监听onload事件，动态添加script节点
+                        <br/>4.通过ajax下载js脚本，动态添加script节点
+                        <br/><strong>参考：</strong> <a href="http://blog.csdn.net/newborn2012/article/details/17057759" target="_blank">《javascript延迟加载方式》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> documen.write和 innerHTML的区别</h4>
+                    <p>
+                        write：
+                        <br/>1.改变 HTML 输出流
+                        <br/>2.当在文档加载之后使用 document.write()，这会覆盖该文档。例如onload事件中
+                        <br/>3.输入css的style标签能改变样式，例如document.write("*b{color:red;font-weight:bold;}*");
+                        <br/>innerHTML：
+                        <br/>1.改变 HTML 内容
+                        <br/>2.输入css的style标签不能改变样式
+                        <br/><strong>参考：</strong> <a href="http://www.w3school.com.cn/js/js_htmldom_html.asp" target="_blank">《JavaScript HTML DOM - 改变 HTML》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> 哪些操作会造成内存泄漏？</h4>
+                    <p>
+                        <br/>1.当页面中元素被移除或替换时，若元素绑定的事件仍没被移除，在IE中不会作出恰当处理，此时要先手工移除事件，不然会存在内存泄露。
+                        <br/>2.在IE中，如果循环引用中的任何对象是 DOM 节点或者 ActiveX 对象，垃圾收集系统则不会处理。
+                        <br/>3.闭包可以维持函数内局部变量，使其得不到释放。
+                        <br/>4.在销毁对象的时候，要遍历属性中属性，依次删除，否则会泄漏。
+                        <br/><strong>参考：</strong> <a href="http://www.cnblogs.com/sprying/archive/2013/05/31/3109517.html" target="_blank">《js内存泄漏的几种情况》</a>
+                        <a href="https://github.com/CN-Chrome-DevTools/CN-Chrome-DevTools/blob/master/md/Performance-Profiling/javascript-memory-profiling.md" target="_blank">《JavaScript内存分析》</a>
+                    </p>
+                </li>
+                <li>
+                    <h4> 什么是 "use strict"</h4>
+                    <p>
+                        ECMAscript 5添加了第二种运行模式："严格模式"（strict mode） 设立"严格模式"的目的，主要有以下几个：
+                        <br/>1.消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
+                        <br/>2.消除代码运行的一些不安全之处，保证代码运行的安全；
+                        <br/>3.提高编译器效率，增加运行速度；
+                        <br/>4.为未来新版本的Javascript做好铺垫。
+                        <br/>注：经过测试IE6,7,8,9均不支持严格模式
+                        <br/><strong>参考：</strong> <a href="http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html" target="_blank">《Javascript 严格模式详解》</a>
+                    </p>
+                </li>
+            </ol>
+        </div>
+        <!-- 返回顶部 -->
+        <div class="gotop">
+            <span class="top"></span>
+        </div>
+    </div>
+</body>
+
+</html>

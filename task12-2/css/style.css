@@ -1,0 +1,124 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #3ac379;
+}
+
+
+/*包裹层*/
+
+#wrapper {
+    width: 1002px;
+    margin: 10px auto;
+    background: #ffffff;
+    border-radius: 60px;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+h2 {
+    margin: 10px auto 40px;
+    background: #3ac877;
+    color: #ffffff;
+    width: 250px;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 0 5px #3ac877;
+}
+
+
+/* 导航 */
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    background: #FF8F00;
+    height: 28px;
+    line-height: 28px;
+    width: 100px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 35px;
+}
+
+nav a:hover {
+    background: #FF8F8F;
+}
+
+h3 {
+    font-size: 28px;
+    padding: 5px;
+    color: #fff;
+    background: #3ac877;
+    width: 250px;
+    border-radius: 0 20px 20px 0;
+}
+
+strong {
+    color: red;
+}
+
+p a {
+    text-decoration: none;
+}
+
+h4 {
+    color: #464646;
+}
+
+
+/*有序列表*/
+
+ol {
+    text-align: left;
+    width: 85%;
+    margin: 20px auto;
+}
+
+ol li {
+    margin-top: 15px;
+}
+
+ol li p {
+    font-size: 14px;
+    padding: 10px;
+    line-height: 30px;
+    background: #eeeeee;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+
+/*返回顶部*/
+
+.gotop {
+    position: fixed;
+    left: 50%;
+    margin-left: 454px;
+    bottom: 50px;
+    width: 34px;
+    text-align: center;
+    z-index: 2000;
+}
+
+.gotop span {
+    cursor: pointer;
+}
+
+.gotop span.top {
+    display: none;
+    background: url("../images/gotop_d19051b.jpg") 0 0 no-repeat;
+    background-size: 34px 103px;
+    width: 43px;
+    height: 34px;
+}
+
+.gotop span.top:hover {
+    background: url("../images/gotop2_3c1a479.jpg") 0 0 no-repeat;
+    background-size: 34px 103px;
+}
